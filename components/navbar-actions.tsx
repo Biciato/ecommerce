@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, User, User2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -8,6 +8,7 @@ import Button from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
 
 const NavbarActions = () => {
+  const session = { user: false };
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -23,6 +24,11 @@ const NavbarActions = () => {
 
   return (
     <div className="ml-auto flex items-center gap-x-4">
+      {session?.user ? (
+        <User className="cursor-pointer" onClick={() => {}} />
+      ) : (
+        <User2 className="cursor-pointer" onClick={() => {}} />
+      )}
       <Button
         onClick={() => router.push("/cart")}
         className="flex items-center rounded-full bg-black px-4 py-2"

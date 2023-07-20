@@ -5,14 +5,24 @@ import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
 
+export async function generateStaticParams() {
+  const products = await getProducts();
+
+  return products.map((product) => ({
+    productId: product.id,
+  }));
+}
+
 interface ProductPageProps {
   params: {
     productId: string;
   };
 }
 
-const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
-  const product = await getProduct(params.productId);
+const ProductPage: React.FC<ProductPageProps> = async ({
+  params: { productId },
+}) => {
+  const product = await getProduct(productId);
   const suggestedProducts = await getProducts({
     categoryId: product?.category?.id,
   });

@@ -1,7 +1,5 @@
 "use client";
 
-export const revalidate = 0;
-
 import PreviewModal from "@/components/preview-modal";
 import { useEffect, useState } from "react";
 
